@@ -1,6 +1,5 @@
 import { useState, useEffect} from "react";
 import DataList from "./DataList";
-
 function SeriesPage(props: { searchParam: string; }){
     const [Series, setSeries]=useState([]);
 
@@ -9,7 +8,9 @@ function SeriesPage(props: { searchParam: string; }){
         console.log(props.searchParam);
         const response = await fetch("http://omdbapi.com/?s="+props.searchParam+"&type=series&apikey=33baabbf");
         const responseJSON = await response.json();
-        setSeries(responseJSON.Search);
+        if(responseJSON.Search)
+            setSeries(responseJSON.Search);
+        else return;
     };
 
     useEffect(()=>{
@@ -17,7 +18,7 @@ function SeriesPage(props: { searchParam: string; }){
     }, [props.searchParam])
 
     return <div className="DataCont">
-        <h1 className="header">SERIES</h1>
+        <h1 className="header">MOVIES</h1>
         <div className="container-fluid">
                 <DataList data={Series} />
         </div>
