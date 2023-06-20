@@ -14,7 +14,7 @@
   color: black;
   font-size: large;
 }
-.btn{
+.button{
 	width: 20%;
   height: 40px;
 	background-color: red;
@@ -23,4 +23,17 @@
   margin-bottom: 5px;
   margin: 2px;
   font-size: large;
+}
+.DataCont{
+  background-color: rgb(62, 62, 62);
+}
+
+.Poster{
+  padding: 5px;
+}
+
+.header{
+  color: white;
+  font-size: 50px;
+  margin-left: 10px;
 }
