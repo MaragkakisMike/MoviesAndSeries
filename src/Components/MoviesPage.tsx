@@ -7,7 +7,7 @@ function MoviesPage(props: { searchParam: string; }){
     const getMoviesRequest =async () => {
         if(props.searchParam===""){return;}
         console.log(props.searchParam);
-        const response = await fetch("http://omdbapi.com/?s="+props.searchParam+"&apikey=33baabbf");
+        const response = await fetch("http://omdbapi.com/?s="+props.searchParam+"&type=movie&apikey=33baabbf");
         const responseJSON = await response.json();
         setMovies(responseJSON.Search);
     };

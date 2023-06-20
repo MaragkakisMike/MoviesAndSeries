@@ -1,6 +1,6 @@
 import MoviesPage from "./Components/MoviesPage";
 import SeriesPage from "./Components/SeriesPage";
-import { SetStateAction, useState} from "react";
+import {useState} from "react";
 import {BrowserRouter as Router,Routes, Route, Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css";
@@ -29,7 +29,7 @@ function App(){
     
     <Routes>
       <Route path='/' element={<MoviesPage searchParam={searchP}/>} />
-      <Route path="/series" element={<SeriesPage />}/>
+      <Route path="/series" element={<SeriesPage searchParam={searchP}/>}/>
     </Routes>
     
   </Router>
