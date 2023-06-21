@@ -1,9 +1,10 @@
+
 .navBar {
   background-color: lightgrey;    
   text-align: center;
   background-image: url(../public/bg.png);
-
 }
+
 #search{
 	width: 40%;
   padding: 3.5px;

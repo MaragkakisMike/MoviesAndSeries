@@ -2,8 +2,8 @@ function FilteringPaging (props: any){
     function handleClickYear(){
         console.log(props.data);
         props.data.sort(function(a: { Year: String; }, b: { Year: String; }){
-            if(a.Year.toLowerCase()<b.Year.toLowerCase())return 1;
-            else if(a.Year.toLowerCase()>b.Year.toLowerCase())return -1;
+            if(a.Year.toLowerCase()<b.Year.toLowerCase())return -1;
+            else if(a.Year.toLowerCase()>b.Year.toLowerCase())return 1;
             else return 0;
         });
         props.func(props.data);

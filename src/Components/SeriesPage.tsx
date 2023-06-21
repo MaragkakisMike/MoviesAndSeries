@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 import DataList from "./DataList";
 import FilteringPaging from "./FilteringPaging";
 
-function SeriesPage(props: { searchParam: string; handleImgClick: any}){
+function SeriesPage(props: any){
     const [Series, setSeries]=useState<any[]>([]);
 
     const getMoviesRequest =async () => {

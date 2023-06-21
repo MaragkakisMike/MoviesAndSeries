@@ -34,7 +34,7 @@ function MoviesPage(props: any){
         getMoviesRequest();
     }, [props.searchParam])
 
-    return <div className="DataCont">
+    return <div className="DataCont" >
             <FilterinPaging data={Movies} header="MOVIES" func={GetSortedMovies}></FilterinPaging>
         <div className="container-fluid">
                 <DataList data={Movies} handleClick={props.handleImgClick}/>

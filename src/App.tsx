@@ -12,7 +12,6 @@ function App(){
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
-      console.log(searchP);
       setSearchP(event.target.value);
     }
   };
