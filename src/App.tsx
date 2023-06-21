@@ -4,6 +4,7 @@ import {useState} from "react";
 import {BrowserRouter as Router,Routes, Route, Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css";
+import DetailsPage from "./Components/DetailsPage";
 
 function App(){
   const [searchP, setSearchP]=useState("");
