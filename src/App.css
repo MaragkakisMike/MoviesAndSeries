@@ -85,3 +85,10 @@
   font-size: 50px;
   margin-left: 10px;
 }
+
+.DetailsContainer{
+  background-color: rgb(35, 35, 35);
+  color: white;
+  font-size: 17px;
+  display: inline-flex;
+}

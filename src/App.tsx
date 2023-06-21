@@ -8,6 +8,7 @@ import DetailsPage from "./Components/DetailsPage";
 
 function App(){
   const [searchP, setSearchP]=useState("");
+  const [Chosen, setChosen]=useState();
 
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
@@ -16,8 +17,9 @@ function App(){
     }
   };
 
-  
-  //setSearchP("Harry");
+  const setChosenImg=(imageData: any)=>{
+    setChosen(imageData)
+  }
 
   return  <Router>
     <div className="navBar" id="navBar">
@@ -29,8 +31,9 @@ function App(){
     </div>
     
     <Routes>
-      <Route path='/' element={<MoviesPage searchParam={searchP}/>} />
-      <Route path="/series" element={<SeriesPage searchParam={searchP}/>}/>
+      <Route path='/' element={<MoviesPage handleImgClick={setChosenImg} searchParam={searchP}/>} />
+      <Route path="/series" element={<SeriesPage handleImgClick={setChosenImg} searchParam={searchP}/>}/>
+      <Route path="/detailspage" element={<DetailsPage ChosenImg={Chosen}/>}></Route>
     </Routes>
     
   </Router>

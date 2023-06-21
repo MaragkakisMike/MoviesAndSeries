@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 import DataList from "./DataList";
 import FilteringPaging from "./FilteringPaging";
 
-function SeriesPage(props: { searchParam: string; }){
+function SeriesPage(props: { searchParam: string; handleImgClick: any}){
     const [Series, setSeries]=useState<any[]>([]);
 
     const getMoviesRequest =async () => {
@@ -18,7 +18,7 @@ function SeriesPage(props: { searchParam: string; }){
             });
         let seriesInfo= [];
         for (var i in responseJSON.Search){
-            const response = await fetch("http://omdbapi.com/?i="+responseJSON.Search[i].imdbID+"&apikey=110b0f84");
+            const response = await fetch("http://omdbapi.com/?i="+responseJSON.Search[i].imdbID+"&plot=full&apikey=110b0f84");
             const responseJSONI = await response.json();
             if(responseJSONI){
                 seriesInfo.push(responseJSONI);
@@ -38,7 +38,7 @@ function SeriesPage(props: { searchParam: string; }){
     return <div className="DataCont">
         <FilteringPaging data={Series} header="SERIES" func={GetSortedSeries}></FilteringPaging>
         <div className="container-fluid">
-                <DataList data={Series} />
+                <DataList data={Series} handleClick={props.handleImgClick}/>
         </div>
     </div>
 }

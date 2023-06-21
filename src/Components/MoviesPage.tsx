@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 import DataList from "./DataList";
 import FilterinPaging from "./FilteringPaging";
 
-function MoviesPage(props: { searchParam: string; }){
+function MoviesPage(props: any){
     const [Movies, setMovies]=useState<any[]>([]);
 
     const getMoviesRequest =async () => {
@@ -17,13 +17,12 @@ function MoviesPage(props: { searchParam: string; }){
             });
         let moviesInfo= [];
         for (var i in responseJSON.Search){
-            const response = await fetch("http://omdbapi.com/?i="+responseJSON.Search[i].imdbID+"&apikey=110b0f84");
+            const response = await fetch("http://omdbapi.com/?i="+responseJSON.Search[i].imdbID+"&plot=full&apikey=110b0f84");
             const responseJSONI = await response.json();
             if(responseJSONI){
                 moviesInfo.push(responseJSONI);
             }else break;
         }
-        console.log(moviesInfo);
         setMovies(moviesInfo);
         
     };
@@ -38,7 +37,7 @@ function MoviesPage(props: { searchParam: string; }){
     return <div className="DataCont">
             <FilterinPaging data={Movies} header="MOVIES" func={GetSortedMovies}></FilterinPaging>
         <div className="container-fluid">
-                <DataList data={Movies} />
+                <DataList data={Movies} handleClick={props.handleImgClick}/>
         </div>
     </div>
 }
