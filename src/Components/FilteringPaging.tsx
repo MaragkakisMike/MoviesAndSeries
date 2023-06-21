@@ -20,21 +20,12 @@ function FilteringPaging (props: any){
     }
 
     async function handleClickRating(){
-        let allData = [];
-        for (var i in props.data){
-            
-            const response = await fetch("http://omdbapi.com/?i="+props.data[i].imdbID+"&apikey=110b0f84");
-            const responseJSON = await response.json();
-            if(responseJSON){
-                allData.push(responseJSON);
-            }else break;
-        }
-        allData.sort(function(a: { imdbRating: number; }, b: { imdbRating: number; }){
+        props.data.sort(function(a: { imdbRating: number; }, b: { imdbRating: number; }){
             if(a.imdbRating<b.imdbRating)return 1;
             else if(a.imdbRating>b.imdbRating)return -1;
             else return 0;});
 
-        props.func(allData, 1);
+        props.func(props.data);
     }
 
     return <div className="Container">

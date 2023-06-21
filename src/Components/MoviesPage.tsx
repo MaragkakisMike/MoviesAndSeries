@@ -10,17 +10,24 @@ function MoviesPage(props: { searchParam: string; }){
         const response = await fetch("http://omdbapi.com/?s="+props.searchParam+"&type=movie&apikey=110b0f84");
         const responseJSON = await response.json();
         if(responseJSON.Search)
-            setMovies(responseJSON.Search.sort(function(a: { Year: String; }, b: { Year: String; }){
+            responseJSON.Search.sort(function(a: { Year: String; }, b: { Year: String; }){
                 if(a.Year.toLowerCase()<b.Year.toLowerCase())return 1;
                 else if(a.Year.toLowerCase()>b.Year.toLowerCase())return -1;
                 else return 0;
-            }));
-        else return;
+            });
+        let moviesInfo= [];
+        for (var i in responseJSON.Search){
+            const response = await fetch("http://omdbapi.com/?i="+responseJSON.Search[i].imdbID+"&apikey=110b0f84");
+            const responseJSONI = await response.json();
+            if(responseJSONI){
+                moviesInfo.push(responseJSONI);
+            }else break;
+        }
+        console.log(moviesInfo);
+        setMovies(moviesInfo);
+        
     };
-    const GetSortedMovies = (sortedmovies: any[], flag: number) => {
-        if(sortedmovies[0].imdbRating && flag)
-            setMovies(sortedmovies);
-        else
+    const GetSortedMovies = () => {
             setMovies((sortedmovies)=> [...sortedmovies]);
       }
     
