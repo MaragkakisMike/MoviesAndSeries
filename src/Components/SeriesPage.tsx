@@ -3,7 +3,7 @@ import DataList from "./DataList";
 import FilteringPaging from "./FilteringPaging";
 
 function SeriesPage(props: { searchParam: string; }){
-    const [Series, setSeries]=useState([]);
+    const [Series, setSeries]=useState<any[]>([]);
 
     const getMoviesRequest =async () => {
         if(props.searchParam===""){return;}
@@ -19,10 +19,12 @@ function SeriesPage(props: { searchParam: string; }){
         else return;
     };
 
-    const GetSortedSeries = () => {
-        setSeries((sortedseries)=> [...sortedseries]);
+    const GetSortedSeries = (sortedseries: any[], flag: number) => {
+        if(sortedseries[0].imdbRating && flag)
+            setSeries(sortedseries);
+        else
+            setSeries((sortedseries)=> [...sortedseries]);
       }
-    
     useEffect(()=>{
         getMoviesRequest();
     }, [props.searchParam])

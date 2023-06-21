@@ -4,7 +4,7 @@ const DataList = (props: { data: any[]; })=>{
         {props.data.map((d)=><div className="hover">
             <figure><img src={d.Poster} onClick={()=>{return console.log(d.Title);}} /></figure>
             <div className="middleTxt">
-                <div className="text">{d.Title}({d.Year})</div>
+                <div className="text">{d.Title}({d.Year})[{d.imdbRating}]</div>
             </div>
             </div>
             )}

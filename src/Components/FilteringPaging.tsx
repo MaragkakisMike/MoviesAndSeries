@@ -1,5 +1,6 @@
 function FilteringPaging (props: any){
-    function handleClick1(){
+    function handleClickYear(){
+        console.log(props.data);
         props.data.sort(function(a: { Year: String; }, b: { Year: String; }){
             if(a.Year.toLowerCase()<b.Year.toLowerCase())return 1;
             else if(a.Year.toLowerCase()>b.Year.toLowerCase())return -1;
@@ -7,7 +8,9 @@ function FilteringPaging (props: any){
         });
         props.func(props.data);
     }
-    function handleClick2(){
+
+    function handleClickAlph(){
+        console.log(props.data);
         props.data.sort(function(a: { Title: String; }, b: { Title: String; }){
             if(a.Title.toLowerCase()<b.Title.toLowerCase())return -1;
             else if(a.Title.toLowerCase()>b.Title.toLowerCase())return 1;
@@ -15,16 +18,32 @@ function FilteringPaging (props: any){
         });
         props.func(props.data);
     }
-    function handleClick3(){
-        
+
+    async function handleClickRating(){
+        let allData = [];
+        for (var i in props.data){
+            
+            const response = await fetch("http://omdbapi.com/?i="+props.data[i].imdbID+"&apikey=110b0f84");
+            const responseJSON = await response.json();
+            if(responseJSON){
+                allData.push(responseJSON);
+            }else break;
+        }
+        allData.sort(function(a: { imdbRating: number; }, b: { imdbRating: number; }){
+            if(a.imdbRating<b.imdbRating)return 1;
+            else if(a.imdbRating>b.imdbRating)return -1;
+            else return 0;});
+
+        props.func(allData, 1);
     }
+
     return <div className="Container">
             <h1 className="header">{props.header}</h1>
             <div className="btn-group" role="group" aria-label="Basic outlined example">
                 <p >Pick sorting method</p>
-                <button type="button" className="btn btn-outline-light" onClick={handleClick1}>Year</button>
-                <button type="button" className="btn btn-outline-light" onClick={handleClick2}>Alphabetically</button>
-                <button type="button" className="btn btn-outline-light" onClick={handleClick3}>Rating</button>
+                <button type="button" className="btn btn-outline-light" onClick={handleClickYear}>Year</button>
+                <button type="button" className="btn btn-outline-light" onClick={handleClickAlph}>Alphabetically</button>
+                <button type="button" className="btn btn-outline-light" onClick={handleClickRating}>Rating</button>
             </div>
         </div>
 }

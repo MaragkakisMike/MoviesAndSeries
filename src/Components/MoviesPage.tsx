@@ -7,7 +7,6 @@ function MoviesPage(props: { searchParam: string; }){
 
     const getMoviesRequest =async () => {
         if(props.searchParam===""){return;}
-        console.log(props.searchParam);
         const response = await fetch("http://omdbapi.com/?s="+props.searchParam+"&type=movie&apikey=110b0f84");
         const responseJSON = await response.json();
         if(responseJSON.Search)
@@ -18,8 +17,11 @@ function MoviesPage(props: { searchParam: string; }){
             }));
         else return;
     };
-    const GetSortedMovies = () => {
-        setMovies((sortedmovies)=> [...sortedmovies]);
+    const GetSortedMovies = (sortedmovies: any[], flag: number) => {
+        if(sortedmovies[0].imdbRating && flag)
+            setMovies(sortedmovies);
+        else
+            setMovies((sortedmovies)=> [...sortedmovies]);
       }
     
     useEffect(()=>{
