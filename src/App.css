@@ -63,10 +63,28 @@
   opacity: 1;
 }
 
+.Container{
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-group{
+  margin-left: 27%;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.btn-group p{
+  color: white;
+  font-size: 15px;
+  margin-top: 15px;
+  padding-right: 10px;
+}
+
 .text {
   color: lightgrey;
   font-size: 16px;
-  padding: 13px 32px;
+  padding: 13px 15px;
 }
 
 .header{
